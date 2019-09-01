@@ -1,0 +1,12 @@
+Notes :-
+. I chose MQ are the backplane for messaging because I am not sure of the required volumes and I know MQ can handle large volumns
+. I also need H2 DB running to get this application to run. Its free and lightweight.
+. ExecutionHandler.calculateNewBalance() does "some" maths there but that is so obviously incorrect. I would fix that after getting slightly more detailed requirements.
+. I think using Annotations is good for this size of application but for a large application I would advocate using a SpringBeans file to keep that logic in a central place for easier maintenance.
+. W.R.T the DB, if there is no natural key I would always put some UUID in there as the primary key. I think this is generally good practice
+. I should assert that I got the beans wired in when a class is created. That is missing.
+. ExeternalMessageInTest does need the DB running to work so strictly speaking it is not a unit test but an end to end test.
+. I used PostMan to test the webservice. The underlying ReportGenerator classhas its own unit test
+. Think I would also have a Spring Boot cron job which periodically polled the database for missing Trader Information and fired off requests for that information
+
+
